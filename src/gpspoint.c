@@ -89,8 +89,14 @@ static gdouble line_altitude = VIK_DEFAULT_ALTITUDE;
 static gboolean line_visible = TRUE;
 
 static gboolean line_extended = FALSE;
+/* Work around a bug in NetBSD. See PR standards/40695 */
+#if defined(__NetBSD__) && __GNUC_PREREQ__(3,3)
+static gdouble line_speed = __builtin_nanf("");
+static gdouble line_course = __builtin_nanf("");
+#else /* NetBSD */
 static gdouble line_speed = NAN;
 static gdouble line_course = NAN;
+#endif /* NetBSD */
 static gint line_sat = 0;
 static gint line_fix = 0;
 /* other possible properties go here */
