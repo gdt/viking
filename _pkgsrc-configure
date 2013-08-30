@@ -1,0 +1,7 @@
+#!/bin/sh
+CPPFLAGS=-I/usr/pkg/include \
+    LDFLAGS="-L/usr/pkg/lib -R/usr/pkg/lib" \
+    ./configure \
+    --disable-realtime-gps-tracking \
+    --enable-gtk-doc \
+    --prefix=/usr/pkg
