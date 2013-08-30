@@ -1,0 +1,29 @@
+#!/bin/sh
+
+echo "START AUTOGEN"
+date
+./autogen.sh \
+    CPPFLAGS=-I/usr/pkg/include \
+    LDFLAGS="-L/usr/pkg/lib -R/usr/pkg/lib" \
+    --disable-realtime-gps-tracking \
+    --enable-gtk-doc \
+    --prefix=/usr/pkg
+
+echo "START GMAKE"
+date
+gmake
+
+echo "START GMAKE DIST"
+date
+CPPFLAGS=-I/usr/pkg/include \
+LDFLAGS="-L/usr/pkg/lib -R/usr/pkg/lib" \
+  gmake dist
+
+echo "START GMAKE DISTCHECK"
+date
+CPPFLAGS=-I/usr/pkg/include \
+LDFLAGS="-L/usr/pkg/lib -R/usr/pkg/lib" \
+  gmake distcheck
+
+echo "DONE"
+date
