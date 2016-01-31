@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# This file is a script to build viking from git on systems using
+# pkgsrc.
+
+CPPFLAGS="-I/usr/pkg/include" \
+LDFLAGS="-L/usr/pkg/lib -R/usr/pkg/lib" \
+    ./autogen.sh --prefix=/usr/y0
